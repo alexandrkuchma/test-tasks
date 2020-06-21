@@ -55,6 +55,7 @@
                             <img src="{$rootUrl}/{$config->design_images|escape}{$settings->site_logo|escape}?v={$settings->site_logo_version|escape}" alt="{$settings->site_name|escape}"/>
                         </a>
                         {/if}
+                        {working_hours_banner}
                     </div>
                     {* Main menu *}
                     <div class="header__menu d-flex flex-wrap">

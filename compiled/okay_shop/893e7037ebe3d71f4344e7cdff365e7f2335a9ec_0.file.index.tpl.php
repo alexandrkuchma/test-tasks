@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2020-06-20 16:41:31
+/* Smarty version 3.1.36, created on 2020-06-21 22:27:58
   from 'C:\OSPanel\domains\test-tasks\design\okay_shop\html\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_5eee120bcc8406_47056980',
+  'unifunc' => 'content_5eefb4be1f7c42_42075009',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '893e7037ebe3d71f4344e7cdff365e7f2335a9ec' => 
     array (
       0 => 'C:\\OSPanel\\domains\\test-tasks\\design\\okay_shop\\html\\index.tpl',
-      1 => 1591208405,
+      1 => 1592767464,
       2 => 'file',
     ),
   ),
@@ -32,7 +32,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:callback.tpl' => 1,
   ),
 ),false)) {
-function content_5eee120bcc8406_47056980 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5eefb4be1f7c42_42075009 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\OSPanel\\domains\\test-tasks\\vendor\\smarty\\smarty\\libs\\plugins\\modifier.date_format.php','function'=>'smarty_modifier_date_format',),));
 ?>
 <!DOCTYPE html>
@@ -104,8 +104,8 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                                         <div class="header__logo logo">
                         <?php ob_start();
 echo $_smarty_tpl->tpl_vars['settings']->value->site_logo;
-$_prefixVariable3 = ob_get_clean();
-if (!empty($_prefixVariable3)) {?>
+$_prefixVariable1 = ob_get_clean();
+if (!empty($_prefixVariable1)) {?>
                         <a class="logo__link " href="<?php if ($_smarty_tpl->tpl_vars['controller']->value == 'MainController') {?>javascript:;<?php } else {
 echo call_user_func_array( $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['url_generator'][0], array( array('route'=>'main'),$_smarty_tpl ) );
 }?>">
@@ -117,6 +117,8 @@ echo htmlspecialchars($_smarty_tpl->tpl_vars['settings']->value->site_logo, ENT_
 "/>
                         </a>
                         <?php }?>
+                        <?php echo call_user_func_array( $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['working_hours_banner'][0], array( array(),$_smarty_tpl ) );?>
+
                     </div>
                                         <div class="header__menu d-flex flex-wrap">
                         <?php echo $_smarty_tpl->tpl_vars['menu_header']->value;?>
@@ -133,7 +135,7 @@ if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['phone']->value) 
 $_smarty_tpl->tpl_vars['phone']->do_else = false;
 $_smarty_tpl->tpl_vars['phone']->index++;
 $_smarty_tpl->tpl_vars['phone']->first = !$_smarty_tpl->tpl_vars['phone']->index;
-$__foreach_phone_11_saved = $_smarty_tpl->tpl_vars['phone'];
+$__foreach_phone_1_saved = $_smarty_tpl->tpl_vars['phone'];
 ?>
                                     <div class="header-contact__item header-contact--phone<?php if ($_smarty_tpl->tpl_vars['phone']->first) {?> header-contact__item--visible<?php }?>">
                                         <a class="d-flex align-items-center header-contact__section" href="tel:<?php echo preg_replace('~[^0-9\+]~','',$_smarty_tpl->tpl_vars['phone']->value);?>
@@ -145,7 +147,7 @@ $__foreach_phone_11_saved = $_smarty_tpl->tpl_vars['phone'];
                                         </a>
                                     </div>
                                 <?php
-$_smarty_tpl->tpl_vars['phone'] = $__foreach_phone_11_saved;
+$_smarty_tpl->tpl_vars['phone'] = $__foreach_phone_1_saved;
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                             <?php }?>
@@ -280,7 +282,7 @@ if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['phone']->value) 
 $_smarty_tpl->tpl_vars['phone']->do_else = false;
 $_smarty_tpl->tpl_vars['phone']->index++;
 $_smarty_tpl->tpl_vars['phone']->first = !$_smarty_tpl->tpl_vars['phone']->index;
-$__foreach_phone_12_saved = $_smarty_tpl->tpl_vars['phone'];
+$__foreach_phone_2_saved = $_smarty_tpl->tpl_vars['phone'];
 ?>
                                 <div class="footer__contact_item">
                                     <a class="d-flex align-items-start phone" href="tel:<?php echo preg_replace('~[^0-9\+]~','',$_smarty_tpl->tpl_vars['phone']->value);?>
@@ -292,7 +294,7 @@ $__foreach_phone_12_saved = $_smarty_tpl->tpl_vars['phone'];
                                     </a>
                                 </div>
                             <?php
-$_smarty_tpl->tpl_vars['phone'] = $__foreach_phone_12_saved;
+$_smarty_tpl->tpl_vars['phone'] = $__foreach_phone_2_saved;
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                         <?php }?>
@@ -521,8 +523,8 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
         <?php if ($_smarty_tpl->tpl_vars['settings']->value->social_share_theme) {?>
             <?php ob_start();
 echo htmlspecialchars($_smarty_tpl->tpl_vars['settings']->value->social_share_theme, ENT_QUOTES, 'UTF-8', true);
-$_prefixVariable4=ob_get_clean();
-echo call_user_func_array( $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['css'][0], array( array('file'=>"jssocials-theme-".$_prefixVariable4.".css",'dir'=>'js_libraries/js_socials/css'),$_smarty_tpl ) );?>
+$_prefixVariable2=ob_get_clean();
+echo call_user_func_array( $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['css'][0], array( array('file'=>"jssocials-theme-".$_prefixVariable2.".css",'dir'=>'js_libraries/js_socials/css'),$_smarty_tpl ) );?>
 
         <?php }?>
     <?php }?>
