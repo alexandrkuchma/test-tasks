@@ -4,7 +4,6 @@
 		{include file="svg.tpl" svgId="user_icon"}
         <span class="account__text" data-language="index_account">{$lang->index_account} </span>
 		<span>{$user->name|escape}</span>
-		{$completed_orders_count}
 	</a>
 {else}
 	<a class="d-inline-flex align-items-center account__link" href="javascript:;" onclick="document.location.href = '{url_generator route="login"}'" title="{$lang->index_login}">

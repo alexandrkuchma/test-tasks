@@ -134,13 +134,13 @@
     if($(".fn_validate_callback").length>0) {
         $(".fn_validate_callback").validate({
             rules: {
-                callback_name: "required",
-                callback_phone: "required",
+                name: "required",
+                phone: "required",
                 captcha_code: "required"
             },
             messages: {
-                callback_name: form_enter_name,
-                callback_phone: form_enter_phone,
+                name: form_enter_name,
+                phone: form_enter_phone,
                 captcha_code: form_error_captcha
             }
 
@@ -253,8 +253,6 @@
         });
     }
 
-    {get_design_block block="front_scripts_after_validate"}
-    
     {if $settings->sj_shares}
          if($(".fn_share").length>0) {
         {if $js_custom_socials}
@@ -272,13 +270,12 @@
     {/if}
 
     /* Звёздный рейтинг товаров */
-    let ratingBlock = $(".fn_rating");
-    if (ratingBlock.length>0) {
+    if($(".product__rating").length>0) {
         $(function() {
-            ratingBlock.rater({ postHref: ratingBlock.data('rating_post_url') });
+            $('.product__rating').rater({ postHref: okay.router['ajax_product_rating'] });
         });
         $.fn.rater = function (options) {
-            var opts = $.extend({literal}{}{/literal}, $.fn.rater.defaults, options);
+            var opts = $.extend({}, $.fn.rater.defaults, options);
             return this.each(function () {
                 var $this = $(this);
                 var $on = $this.find('.rating_starOn');

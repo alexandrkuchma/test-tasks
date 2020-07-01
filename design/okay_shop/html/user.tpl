@@ -38,15 +38,15 @@
                         {if $error}
                         <div class="message_error">
                             {if $error == 'empty_name'}
-                                <span data-language="form_enter_name">{$lang->form_enter_name}</span>
+                            <span data-language="form_enter_name">{$lang->form_enter_name}</span>
                             {elseif $error == 'empty_email'}
-                                <span data-language="form_enter_email">{$lang->form_enter_email}</span>
+                            <span data-language="form_enter_email">{$lang->form_enter_email}</span>
                             {elseif $error == 'empty_password'}
-                                <span data-language="form_enter_password">{$lang->form_enter_password}</span>
+                            <span data-language="form_enter_password">{$lang->form_enter_password}</span>
                             {elseif $error == 'user_exists'}
-                                <span data-language="register_user_registered">{$lang->register_user_registered}</span>
+                            <span data-language="register_user_registered">{$lang->register_user_registered}</span>
                             {else}
-                                {$error|escape}
+                            {$error}
                             {/if}
                         </div>
                         {/if}
@@ -65,7 +65,7 @@
 
                         {* User's phone *}
                         <div class="form__group">
-                            <input class="form__input form__placeholder--focus" value="{$user->phone|phone}" name="phone" type="text" data-language="form_phone" />
+                            <input class="form__input form__placeholder--focus" value="{$user->phone|escape}" name="phone" type="text" data-language="form_phone" />
                             <span class="form__placeholder">{$lang->form_phone}</span>
                         </div>
 
@@ -93,6 +93,7 @@
                     </div>
                 </form>
             </div>
+    
             {* Orders history *}
             {if $orders}
                 <div class="form_wrap f_col-lg-7">
@@ -101,7 +102,6 @@
                             <span data-language="user_my_orders">{$lang->user_my_orders}</span>
                         </div>
                         <div class="block_explanation__body">
-                        {$completed_orders_count}
                             <div class="table_wrapper block__description--style">
                                 <table class="table">
                                     <thead>

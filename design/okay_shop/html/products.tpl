@@ -115,6 +115,7 @@
                     </div>
                 </div>
             {/if}
+            {categories_faq_block}
         </div>
     </div>
 </div>

@@ -52,10 +52,9 @@
                     <div class="header__logo logo">
                         {if !empty({$settings->site_logo})}
                         <a class="logo__link " href="{if $controller=='MainController'}javascript:;{else}{url_generator route='main'}{/if}">
-                            <img src="{$rootUrl}/{$config->design_images|escape}{$settings->site_logo|escape}?v={$settings->site_logo_version|escape}" alt="{$settings->site_name|escape}"/>
+                            <img src="{$rootUrl}/{$config->design_images}{$settings->site_logo}?v={$settings->site_logo_version}" alt="{$settings->site_name|escape}"/>
                         </a>
                         {/if}
-                        {working_hours_banner}
                     </div>
                     {* Main menu *}
                     <div class="header__menu d-flex flex-wrap">
@@ -63,7 +62,7 @@
                     </div>
                     {* header contacts *}
                     <div class="header-contact">
-                        <div class="header-contact__inner {if !$settings->site_phones && !$settings->site_email} header-contact__inner--adress{/if}">
+                        <div class="header-contact__inner">
                             {if $settings->site_phones}
                                 {foreach $settings->site_phones as $phone}
                                     <div class="header-contact__item header-contact--phone{if $phone@first} header-contact__item--visible{/if}">
@@ -75,14 +74,14 @@
                                 {/foreach}
                             {/if}
                             {if $settings->site_email}
-                                <div class="header-contact__item header-contact--email {if !$settings->site_phones} header-contact__item--visible{/if}">
+                                <div class="header-contact__item header-contact--email">
                                     <a class="d-flex align-items-center header-contact__section" href="mailto:{$settings->site_email|escape}" >
                                         <span>{$settings->site_email|escape}</span>
                                     </a>
                                 </div>
                             {/if}
                             {if $settings->site_working_hours}
-                                <div class="header-contact__item header-contact--time {if !$settings->site_phones && !$settings->site_email} header-contact__item--visible{/if}">
+                                <div class="header-contact__item header-contact--time">
                                     <div class="d-flex align-items-center header-contact__section">
                                         <div class="header-contact__title-s">{$settings->site_working_hours}</div>
                                     </div>
@@ -131,7 +130,7 @@
                             <div id="cart_informer" class="header_informers__item d-flex align-items-center justify-content-center">{include file='cart_informer.tpl'}</div>
                         </div>
                         {* Categories menu *}
-                        {if $is_mobile == false || $is_tablet == true}
+                        {if $is_mobile == false && $is_tablet == false}
                             <nav class="fn_catalog_menu categories_nav hidden-md-down {if $controller == 'MainController' && !empty($global_banners)}categories_nav--show{/if}">
                                 {include file="desktop_categories.tpl"}
                             </nav>
@@ -209,10 +208,10 @@
                         {/if}
                         {if $settings->site_working_hours}
                             <div class="footer__contact_item">
-                                <div class="d-flex align-items-start open_hours">
+                                <span class="d-flex align-items-start open_hours">
                                     {include file="svg.tpl" svgId="time_icon"}
                                     {$settings->site_working_hours}
-                                </div>
+                                </span>
                             </div>
                         {/if}
                         <div class="footer__contact_item">
@@ -278,10 +277,9 @@
                                         {include file="svg.tpl" svgId="success_icon"}
                                         {if $subscribe_error == 'email_exist'}
                                             <span data-language="subscribe_already">{$lang->index_subscribe_already}</span>
-                                        {elseif $subscribe_error == 'empty_email'}
+                                        {/if}
+                                        {if $subscribe_error == 'empty_email'}
                                             <span data-language="form_enter_email">{$lang->form_enter_email}</span>
-                                        {else}
-                                            <span>{$subscribe_error|escape}</span>
                                         {/if}
                                     </div>
                                 </div>
@@ -298,16 +296,22 @@
                         </form>
                     </div>
                     {* Social buttons *}
-                    {if $site_social}
+                    {if $settings->site_social_links}
                         <div class="footer__title d-flex align-items-center justify-content-between">
                             <span data-language="index_in_networks">{$lang->index_in_networks}</span>
                             <span class="fn_switch_parent footer__title_arrow hidden-lg-up">{include file="svg.tpl" svgId="arrow_right"}</span>
                         </div>
                         <div class="footer__content footer__social social footer__hidden">
-                            {foreach $site_social as $social}
-                                <a class="social__link {$social.domain|escape}" rel="noreferrer" aria-label="{$social_domain}" href="{if !preg_match('~^https?://.*$~', $social.url)}https://{/if}{$social.url|escape}" target="_blank" title="{$social.domain|escape}">
-                                    <i class="fa fa-{$social.domain|escape}"></i>
-                                </a>
+                            {*Домен некоторых соц. сетей не соответствует стилям font-awesome, для них сделаны эти алиасы*}
+                            {$social_aliases.ok = 'odnoklassniki'}
+
+                            {foreach $settings->site_social_links as $social_link}
+                            {$social_domain = preg_replace('~(https?://)?(www\.)?([^\.]+)?\..*~', '$3', $social_link)}
+                            {if isset($social_aliases.$social_domain) || $social_domain}
+                            <a class="social__link {if isset($social_aliases.$social_domain)}{$social_aliases.$social_domain}{else}{$social_domain}{/if}" rel="noreferrer" aria-label="{$social_domain}" href="{if !preg_match('~^https?://.*$~', $social_link)}https://{/if}{$social_link|escape}" target="_blank" title="{$social_domain}">
+                                <i class="fa fa-{if isset($social_aliases.$social_domain)}{$social_aliases.$social_domain}{else}{$social_domain}{/if}"></i>
+                            </a>
+                            {/if}
                             {/foreach}
                         </div>
                     {/if}
@@ -323,8 +327,8 @@
                         <ul class="payments__list d-flex justify-content-md-end align-items-center">
                             {foreach $payment_methods as $payment_method}
                                 {if !$payment_method->image}{continue}{/if}
-                                <li class="d-flex justify-content-center align-items-center payments__item" title="{$payment_method->name|escape}">
-                                    <img src="{$payment_method->image|resize:80:30:false:$config->resized_payments_dir}" alt="{$payment_method->name|escape}" />
+                                <li class="d-flex justify-content-center align-items-center payments__item" title="{$payment_method->name}">
+                                    <img src="{$payment_method->image|resize:80:30:false:$config->resized_payments_dir}" />
                                 </li>
                             {/foreach}
                         </ul>

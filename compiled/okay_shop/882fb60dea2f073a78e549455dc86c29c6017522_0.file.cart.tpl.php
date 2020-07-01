@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2020-06-20 17:45:50
+/* Smarty version 3.1.36, created on 2020-06-29 22:35:03
   from 'C:\OSPanel\domains\test-tasks\design\okay_shop\html\cart.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_5eee211e04c5c6_00747017',
+  'unifunc' => 'content_5efa42673eb3d5_39059907',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '882fb60dea2f073a78e549455dc86c29c6017522' => 
     array (
       0 => 'C:\\OSPanel\\domains\\test-tasks\\design\\okay_shop\\html\\cart.tpl',
-      1 => 1591208405,
+      1 => 1593459301,
       2 => 'file',
     ),
   ),
@@ -24,7 +24,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:cart_deliveries.tpl' => 1,
   ),
 ),false)) {
-function content_5eee211e04c5c6_00747017 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5efa42673eb3d5_39059907 (Smarty_Internal_Template $_smarty_tpl) {
 if ($_smarty_tpl->tpl_vars['cart']->value->isEmpty === false) {?>
     <div class="block">
         <div class="block__header block__header--boxed block__header--border">
@@ -75,7 +75,7 @@ if ($_smarty_tpl->tpl_vars['cart']->value->isEmpty === false) {?>
 :</div>
                                             </div>
                                             <div class="purchase_detail__column_value">
-                                                <div class="purchase_detail__price"><?php echo htmlspecialchars($_smarty_tpl->tpl_vars['user']->value->discount, ENT_QUOTES, 'UTF-8', true);?>
+                                                <div class="purchase_detail__price"><?php echo $_smarty_tpl->tpl_vars['user']->value->discount;?>
 %</div>
                                             </div>
                                         </div>
@@ -155,21 +155,21 @@ if ($_smarty_tpl->tpl_vars['cart']->value->isEmpty === false) {?>
                                                 <?php if ($_smarty_tpl->tpl_vars['error']->value == 'empty_name') {?>
                                                     <span data-language="form_enter_name"><?php echo $_smarty_tpl->tpl_vars['lang']->value->form_enter_name;?>
 </span>
-                                                <?php } elseif ($_smarty_tpl->tpl_vars['error']->value == 'empty_email') {?>
+                                                <?php }?>
+                                                <?php if ($_smarty_tpl->tpl_vars['error']->value == 'empty_email') {?>
                                                     <span data-language="form_enter_email"><?php echo $_smarty_tpl->tpl_vars['lang']->value->form_enter_email;?>
 </span>
-                                                <?php } elseif ($_smarty_tpl->tpl_vars['error']->value == 'captcha') {?>
+                                                <?php }?>
+                                                <?php if ($_smarty_tpl->tpl_vars['error']->value == 'captcha') {?>
                                                     <span data-language="form_error_captcha"><?php echo $_smarty_tpl->tpl_vars['lang']->value->form_error_captcha;?>
 </span>
-                                                <?php } elseif ($_smarty_tpl->tpl_vars['error']->value == 'empty_phone') {?>
+                                                <?php }?>
+                                                <?php if ($_smarty_tpl->tpl_vars['error']->value == 'empty_phone') {?>
                                                     <span data-language="form_error_phone"><?php echo $_smarty_tpl->tpl_vars['lang']->value->form_error_phone;?>
- <?php echo $_smarty_tpl->tpl_vars['lang']->value->form_error_phone_example;?>
- <?php echo $_smarty_tpl->tpl_vars['phone_example']->value;?>
-</span>
-                                                <?php } else { ?>
-                                                    <span><?php echo htmlspecialchars($_smarty_tpl->tpl_vars['error']->value, ENT_QUOTES, 'UTF-8', true);?>
 </span>
                                                 <?php }?>
+                                                <?php echo call_user_func_array( $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['error_min_order_amount'][0], array( array(),$_smarty_tpl ) );?>
+
                                             </div>
                                         <?php }?>
                                         <div class="f_row">
@@ -187,7 +187,7 @@ if ($_smarty_tpl->tpl_vars['cart']->value->isEmpty === false) {?>
                                                     <input class="form__input form__placeholder--focus" name="phone" type="text" value="<?php echo htmlspecialchars($_smarty_tpl->tpl_vars['request_data']->value['phone'], ENT_QUOTES, 'UTF-8', true);?>
 " data-language="form_phone" >
                                                     <span class="form__placeholder"><?php echo $_smarty_tpl->tpl_vars['lang']->value->form_phone;?>
-</span>
+*</span>
                                                 </div>
                                             </div>
 
@@ -220,7 +220,6 @@ if ($_smarty_tpl->tpl_vars['cart']->value->isEmpty === false) {?>
                                         </div>
                                     </div>
                                 </div>
-
                                                                 <div id="fn_ajax_deliveries">
                                     <?php $_smarty_tpl->_subTemplateRender('file:cart_deliveries.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>

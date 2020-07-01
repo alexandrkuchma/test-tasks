@@ -1,4 +1,5 @@
 {*NOTICE: Обратите внимание, data-total_purchases_price хранится в основной валюте сайта*}
+{sets_in_cart}
 <div class="fn_purchases_wrap" data-total_purchases_price="{$cart->total_price}">
 {foreach $cart->purchases as $purchase}
     <div class="purchase__item d-flex align-items-start">

@@ -1,5 +1,5 @@
 {* Order page *}
-
+{sets_in_order purchase=$purchase}
 <div class="block">
     <div class="block__header block__header--boxed block__header--border">
         <div class="block__title block__title--order">
@@ -101,7 +101,10 @@
                                     </div>
                                     <div class="purchase_detail__column_value">
                                         <div class="purchase_detail__price">
-                                            <span>{$order->delivery_price|convert} <span class="currency"> {$currency->sign|escape}</span></span>
+                                            {if !$order->separate_delivery}
+                                                <span>{$order->delivery_price|convert} <span class="currency"> {$currency->sign|escape}</span></span>
+                                            {else}
+                                            {/if}
                                         </div>
                                     </div>
                                 </div>
@@ -248,7 +251,7 @@
                                             <td>
                                                 <span data-language="order_phone">{$lang->order_phone}</span>
                                             </td>
-                                            <td>{$order->phone|phone}</td>
+                                            <td>{$order->phone|escape}</td>
                                         </tr>
                                     {/if}
                                     {if $order->address}

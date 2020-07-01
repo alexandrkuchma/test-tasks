@@ -46,7 +46,7 @@
                                                 <div class="purchase_detail__name" data-language="cart_discount">{$lang->cart_discount}:</div>
                                             </div>
                                             <div class="purchase_detail__column_value">
-                                                <div class="purchase_detail__price">{$user->discount|escape}%</div>
+                                                <div class="purchase_detail__price">{$user->discount}%</div>
                                             </div>
                                         </div>
                                     {/if}
@@ -114,15 +114,17 @@
                                             <div class="message_error">
                                                 {if $error == 'empty_name'}
                                                     <span data-language="form_enter_name">{$lang->form_enter_name}</span>
-                                                {elseif $error == 'empty_email'}
-                                                    <span data-language="form_enter_email">{$lang->form_enter_email}</span>
-                                                {elseif $error == 'captcha'}
-                                                    <span data-language="form_error_captcha">{$lang->form_error_captcha}</span>
-                                                {elseif $error == 'empty_phone'}
-                                                    <span data-language="form_error_phone">{$lang->form_error_phone} {$lang->form_error_phone_example} {$phone_example}</span>
-                                                {else}
-                                                    <span>{$error|escape}</span>
                                                 {/if}
+                                                {if $error == 'empty_email'}
+                                                    <span data-language="form_enter_email">{$lang->form_enter_email}</span>
+                                                {/if}
+                                                {if $error == 'captcha'}
+                                                    <span data-language="form_error_captcha">{$lang->form_error_captcha}</span>
+                                                {/if}
+                                                {if $error == 'empty_phone'}
+                                                    <span data-language="form_error_phone">{$lang->form_error_phone}</span>
+                                                {/if}
+                                                {error_min_order_amount}
                                             </div>
                                         {/if}
                                         <div class="f_row">
@@ -138,7 +140,7 @@
                                             <div class="f_col-md-6 f_col-lg-12 f_col-xl-6">
                                                 <div class="form__group">
                                                     <input class="form__input form__placeholder--focus" name="phone" type="text" value="{$request_data.phone|escape}" data-language="form_phone" >
-                                                    <span class="form__placeholder">{$lang->form_phone}</span>
+                                                    <span class="form__placeholder">{$lang->form_phone}*</span>
                                                 </div>
                                             </div>
 
@@ -168,7 +170,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 {* Delivery and Payment *}
                                 <div id="fn_ajax_deliveries">
                                     {include file='cart_deliveries.tpl'}
